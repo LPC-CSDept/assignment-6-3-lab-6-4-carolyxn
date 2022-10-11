@@ -9,28 +9,25 @@ int main()
 	
 	cout << "Enter the number of inputs: ";
 	cin >> N;
+	result = getSum(N);
+	cout << "Sum: " << result << endl;
+}
+
+int getSum(int N)
+{
+	int sum=0;
+	int min, max, num;
 
 	for(int i=0; i<N; i++)
 		{
 			cout << "Enter your value: ";
 			cin >> num;
-			result = getSum(num);
+			sum += num;
+			if ( i == 0)
+				min = max = num;
+			min = (min > num)? num : min ;
+			max = (max < num)? num : max ;
 		}
-	cout << "Sum: " << result << endl;
-}
-
-int getSum(int val, int cnt)
-{
-	static int sum=0;
-	static int min, max;
-	if (sum == 0)
-		min = max = val;
-	min = (min > val)? val : min ;
-	max = (max < val)? val : max ;
-	// if (cnt == 0 || (min > val) )
-	// 	min = val;
-	// if (cnt == 0) || (max < val))
-	// 	max = val
-	sum += val;
+	sum = sum - min - max;
 	return sum;
 }
